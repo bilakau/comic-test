@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 6% 6%;
+    --foreground: 220 10% 90%;
+    --card: 240 5% 10%;
+    --card-foreground: 220 10% 90%;
+    --popover: 240 5% 10%;
+    --popover-foreground: 220 10% 90%;
+    --primary: 38 92% 50%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 220 10% 90%;
+    --muted: 240 4% 16%;
+    --muted-foreground: 220 5% 55%;
+    --accent: 38 92% 50%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 38 92% 50%;
+    --radius: 0.75rem;
+    --sidebar-background: 240 6% 8%;
+    --sidebar-foreground: 220 10% 90%;
+    --sidebar-primary: 38 92% 50%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 240 4% 16%;
+    --sidebar-accent-foreground: 220 10% 90%;
+    --sidebar-border: 240 4% 16%;
+    --sidebar-ring: 38 92% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: hsl(240 6% 6%); }
+::-webkit-scrollbar-thumb { background: hsl(240 4% 20%); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(38 92% 50%); }
+
+/* Type badge colors */
+.type-manga { color: hsl(217 91% 68%); border-color: hsla(217, 91%, 68%, 0.35); }
+.type-manhwa { color: hsl(160 64% 55%); border-color: hsla(160, 64%, 55%, 0.35); }
+.type-manhua { color: hsl(330 75% 68%); border-color: hsla(330, 75%, 68%, 0.35); }
+
+/* Glass effect */
+.glass {
+  background: hsla(240, 5%, 10%, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Skeleton shimmer */
+.skeleton-shimmer {
+  background: linear-gradient(90deg, hsla(0,0%,100%,0.04) 25%, hsla(0,0%,100%,0.08) 37%, hsla(0,0%,100%,0.04) 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.2s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: 0 0; }
+}
+
+/* Safe area */
+.pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+
+/* Comic page image */
+.comic-page {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Reader mode: enables Chrome dynamic toolbar (auto-hide address bar).
+   100dvh = dynamic viewport height that excludes the browser chrome when hidden.
+   Setting height (not min-height) to 100dvh triggers Chrome's dynamic toolbar behavior. */
+body.reader-mode {
+  height: 100dvh;
+  /* Fallback for older browsers that don't support dvh */
+  height: -webkit-fill-available;
+  overflow-y: scroll;
+  /* Prevent pull-to-refresh on Chrome Android which can interfere */
+  overscroll-behavior-y: contain;
+}
