@@ -31,8 +31,9 @@ export default function AuthPage() {
       if (error) {
         toast.error("Login Google gagal: " + error.message);
       }
-    } catch {
-      toast.error("Login Google gagal");
+    } catch (err: any) {
+      console.error("Google login exception:", err);
+      toast.error("Login Google gagal: " + (err?.message || "Kesalahan tidak diketahui"));
     }
     setGoogleLoading(false);
   };
